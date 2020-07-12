@@ -17,13 +17,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get("/users", function() {
-// 	return view("users/index");  // (1)
-// });
+Auth::routes();//rogin
+
+
 //ルーティングは以下の通り。railsとの違いは、controllerで取得した変数の渡し方が明記的になっている。
 //bladeテンプレートはcontrollerの戻り値で呼び出している。
 Route::get('/users', 'UsersController@index');
-
-Auth::routes();//rogin
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+//location_routes
+//new, list, show, edit ::get
+//store, update, destroy ::post,put,putch
+Route::get('/users/locations/new', 'LocationsController@new');
+Route::get('/users/locations/list', 'LocationsController@list');
+Route::post('/users/locations/create', 'LocationsController@create');
+Route::resource('users/locations', 'LocationsController',['only' => ['show', 'edit', 'store', 'update', 'destroy']]);

@@ -1,4 +1,5 @@
 <!doctype html>
+
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -19,6 +20,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
+
         html, body {
             background-color: #fff;
             color: #636b6f;
@@ -74,7 +76,7 @@
         }
 
         .title {
-            font-size: 84px;
+            font-size: 100px;
         }
 
         .links > a {
@@ -89,6 +91,11 @@
         .m-b-md {
             margin-bottom: 30px;
         }
+        @media screen and (max-width:600px) {
+          .title {
+            font-size: 60px;
+          }
+        }
     </style>
 </head>
 <body>
@@ -99,11 +106,13 @@
       <div class="app-title">
         <h3><b>MyLocation</b></h3>
       </div>
-      @guest
-      <a class = "header-item" href="{{ route('login') }}">login</a>
-      @else
       <div class = "header-group">
-      <a class = "header-item pc-nav" href="/users">mypage</a>
+      @guest
+      <a class = "header-item pc-nav" href="{{ route('login') }}">Login</a>
+      <a class = "header-item pc-nav" href="{{ route('register') }}">Register</a>
+      @else
+
+      <a class = "header-item pc-nav" href="/users">Mypage</a>
       <a class = "header-item pc-nav" href="/users/locations/list">list</a>
       <a class = "header-item pc-nav" href="/users/locations/new">NewSpot</a>
           <a class="header-item pc-nav" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
@@ -133,5 +142,6 @@
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>

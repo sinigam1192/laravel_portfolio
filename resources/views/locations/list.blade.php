@@ -8,10 +8,10 @@
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">title</th>
-      <th scope="col">content</th>
-      <th scope="col">edit</th>
-      <th scope="col">delete?</th>
+      <th scope="col" style="width:25%">title</th>
+      <th scope="col" style="width:60%">content</th>
+      <th scope="col" style="width:7.5%">edit</th>
+      <th scope="col" style="width:7.5%">delete?</th>
     </tr>
   </thead>
 @foreach ($lists as $list)

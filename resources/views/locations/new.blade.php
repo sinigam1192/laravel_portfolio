@@ -34,24 +34,37 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.33&key={{ config('services.google-map.apikey') }}&libraries=places&callback=initMap" async></script>
 <script type="text/javascript">
 var map;
+var lat = 35.677730;
+var lng = 139.754813;
+//現在位置を取得する
+var geo_Options = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 1000
+};
+function success(pos){
+  var crd = pos.coords;
+  lat = crd.latitude;
+  lng = crd.longitude;
+}
+function error(){}
+
+navigator.geolocation.getCurrentPosition(success, error, geo_Options);
+
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
       center: { // 地図の中心を指定
-          lat: 34.7019399, // 緯度
-          lng: 135.51002519999997 // 経度
+          lat: lat, // 緯度
+          lng:  lng// 経度
       },
       zoom: 15 // 地図のズーム
     });
     google.maps.event.addListener(map, 'click', dropMarker);
-
     //クリックしたらその座標にマーカーを置く
     function dropMarker(event){
-
-
       var opts = {
 	         animation: google.maps.Animation.DROP,
          };
-
               //marker作成
               var marker = new google.maps.Marker(opts);
                 //markerの位置を設定
@@ -62,15 +75,11 @@ function initMap() {
               pos = marker.getPosition();
               lat = pos.lat();
               lng = pos.lng();
-              document.getElementById("lat").value = lat ;
-              document.getElementById("lng").value = lng ;
-
-
+              document.getElementById("lat").value = lat;
+              document.getElementById("lng").value = lng;
        };
-    // クリックした地点の座標をalertで表示する
   }
 </script>
-
 <div id="map"></div><br>
 <div>
     <input type= "submit" value="Create" class="btn btn-primary" />

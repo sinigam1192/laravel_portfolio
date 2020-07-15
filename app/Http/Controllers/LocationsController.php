@@ -35,10 +35,10 @@ class LocationsController extends Controller
         $new_location = new Location;
         $new_location->title = $request->title;
         $new_location->content = $request->content;
-        $new_location->url = $request->url;
         $new_location->user_id = $user['id'];
-        $new_location->latitude = 35.6851793;//kari
-        $new_location->longitude = 139.7506108;//kari
+        $new_location->url = 'null';
+        $new_location->latitude = $request->lat;//kari
+        $new_location->longitude = $request->lng;//kari
         $new_location->save();
         return redirect('/users/locations/list');
     }
@@ -82,7 +82,8 @@ class LocationsController extends Controller
     public function edit($id)
     {
         //
-        return view('locations.edit');
+        $location = Location::find($id);
+        return view('locations.edit',compact('location'));
     }
 
     /**
@@ -95,6 +96,14 @@ class LocationsController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $location = Location::find($id);
+        $location->title = $request->title;
+        $location->content = $request->content;
+        $location->url = "";
+        $location->latitude = $request->lat;//
+        $location->longitude = $request->lng;//
+        $location->save();
+        return redirect('/users/locations/list');
     }
 
     /**

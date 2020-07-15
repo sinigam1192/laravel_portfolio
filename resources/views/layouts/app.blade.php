@@ -11,13 +11,13 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <style>
         html, body {
             background-color: #fff;
@@ -26,6 +26,27 @@
             font-weight: 200;
             height: 100vh;
             margin: 0;
+        }
+        header {
+          background-color:coral;
+        }
+
+        .pc-nav{
+          margin-left: 5px;
+        }
+        .app-title{
+
+        }
+        .header-group{
+          text-align: right;
+        }
+
+        .header-item{
+          color: white;
+        }
+
+        .header-item:hover{
+          color: grey;
         }
 
         .full-height {
@@ -44,8 +65,8 @@
 
         .top-right {
             position: absolute;
-            right: 10px;
-            top: 18px;
+
+
         }
 
         .content {
@@ -65,30 +86,33 @@
             text-decoration: none;
             text-transform: uppercase;
         }
-
         .m-b-md {
             margin-bottom: 30px;
         }
     </style>
 </head>
 <body>
+
   <header>
-    <div class="header-list">
+    <div class="container">
+
+      <div class="app-title">
+        <h3><b>MyLocation</b></h3>
+      </div>
       @guest
       <a class = "header-item" href="{{ route('login') }}">login</a>
       @else
-      <a class = "header-item" href="/users">マイページ</a>
-      <a class = "header-item" href="/users/locations/list">マイリスト</a>
-      <a class = "header-item" href="/users/locations/new">スポット登録</a>
-          <a class="dropdown-item" href="{{ route('logout') }}"
-             onclick="event.preventDefault();
-                           document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
-          </a>
+      <div class = "header-group">
+      <a class = "header-item pc-nav" href="/users">mypage</a>
+      <a class = "header-item pc-nav" href="/users/locations/list">list</a>
+      <a class = "header-item pc-nav" href="/users/locations/new">NewSpot</a>
+          <a class="header-item pc-nav" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
               @csrf
           </form>
-      @endguest
+
+  @endguest
+
     </div>
   </header>
     <div id="app">
@@ -96,13 +120,12 @@
             <div class="container">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
+                    <!-- <ul class="navbar-nav mr-auto">
+                    </ul> -->
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                    </ul>
+                    <!-- <ul class="navbar-nav ml-auto">
+                    </ul> -->
                 </div>
             </div>
         </nav>

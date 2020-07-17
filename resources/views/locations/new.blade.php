@@ -12,6 +12,7 @@
 <div class="container">
 <h1>location_new</h1>
 <form action="/users/locations/" method="POST">
+    @csrf
     {{ csrf_field() }}
     <div class="form-group">
         <label>Title</label><br>

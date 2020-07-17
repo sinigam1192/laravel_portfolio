@@ -19,7 +19,7 @@
     <tr>
       <td>{{$list->title}}</td>
       <td>{{$list->content}}</td>
-      <td><a href="{{ url('users/locations/'.$list->id.'/edit') }}" class="btn btn-primary">
+      <td><a href="{{ url('users/locations'.$list->id.'/edit') }}" class="btn btn-primary">
           {{ __('Edit') }}
       </a></td>
       <td><form action="{{ route('locations.destroy', [$list->id]) }}" method="post">

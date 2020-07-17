@@ -11,7 +11,7 @@
 @section('content')
 <h1>location_edit</h1>
 <div class="container">
-   <form action="{{ url('/users/locations'.$location->id.'') }}" method="post">
+   <form action="{{ url('/users/locations/'.$location->id.'') }}" method="post">
      @csrf
        @method('PUT')
        <div class="form-group">
